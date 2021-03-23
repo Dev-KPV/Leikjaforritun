@@ -5,20 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class SceneTrigger : MonoBehaviour
 {
-        void OnTriggerEnter(Collider other)
-        {
-            SceneManager.LoadScene(1);
-        }
-  
-    // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("byrja");
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        other.gameObject.SetActive(false);
+        StartCoroutine(Bida());
+    }
+    IEnumerator Bida()
+    {
+        yield return new WaitForSeconds(3);
+        Endurræsa();
+    }
+    public void Endurræsa()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);//næsta sena
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

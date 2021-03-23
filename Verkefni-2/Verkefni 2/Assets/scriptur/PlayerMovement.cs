@@ -28,17 +28,18 @@ public class PlayerMovement : MonoBehaviour
         leikmadur = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
 
-
-
     }
 
     void OnCollisionStay()
     {
         isGrounded = true;
     }
+
+
     // Update fixed
     void FixedUpdate()
     {
+        //Left Right
         if (Input.GetKey(KeyCode.UpArrow))
         {
             transform.position += transform.forward * hradi;
@@ -56,15 +57,27 @@ public class PlayerMovement : MonoBehaviour
             transform.position += -transform.right * hlidarhradi;
         }
 
-
+        // ef grounded allow jump
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             leikmadur.AddForce(jump * jumpForce, ForceMode.Impulse);
             isGrounded = false;
         }
 
-    
-
+        // rotation
+        if (Input.GetKey("f"))
+        {
+            transform.Rotate(new Vector3(0, 5, 0));
+        }
+        if (Input.GetKey("g"))//snúa leikmanni
+        {
+            transform.Rotate(new Vector3(0, -5, 0));
+        }
+        // ef dettir undir y=1 restart level
+        if (transform.position.y <= -1)
+        {
+            Endurraesa();
+        }
 
 
     }
@@ -77,22 +90,50 @@ public class PlayerMovement : MonoBehaviour
             count = count + 1; // teljarinn
             Debug.Log("Nú er ég komin með " + count); // skrifar í console stig
             SetCountText(); // kallar á fallið
+      
+        }
+
+        if (collision.collider.tag == "enemy")
+        {
+            collision.collider.gameObject.SetActive(false);
+            count = count - 1;
+            SetCountText();
 
         }
     }
     void SetCountText()
     {
         countText.text = "Stig: " + count.ToString();
-        if (count >= 4)
-            countText.text = "Þú hefur unnið með" + count.ToString() + " stigum";
-            
-    }       
 
+        if (count <= 0)
+        {
+            this.enabled = false;//kemur í veg fyrir að playerinn geti hreyfst áfram eftir dauðan
+            countText.text = "DEAD " + count.ToString() + " stig";
+            StartCoroutine(Bida());
+
+        }
+
+    }
+    IEnumerator Bida()
+    {
+        yield return new WaitForSeconds(1);
+        Endurraesa();
+    }
+
+
+    public void Byrja()
+    {
+        SceneManager.LoadScene(1);
+    }
     public void Endurraesa()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        SceneManager.LoadScene("Upphafsena");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);//Level_1
+        SceneManager.LoadScene(1);
     }
+
 }
+
+
+
 
 

@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\scriptur\Klikk.cs" />
     <Compile Include="Assets\scriptur\PlayerMovement.cs" />
     <Compile Include="Assets\scriptur\SceneTrigger.cs" />
     <Compile Include="Assets\scriptur\Spinner.cs" />
