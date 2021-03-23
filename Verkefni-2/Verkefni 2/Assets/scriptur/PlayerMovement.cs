@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float hradi = 2.0f;
     public float hlidarhradi = 2.0f;
+    
 
     private int count;
     public Text countText;
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 5.0f;
     public bool isGrounded;
     private Rigidbody leikmadur;
+
 
 
 
@@ -123,11 +125,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void Byrja()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
     public void Endurraesa()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);//Level_1
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);//Level_1
         SceneManager.LoadScene(1);
     }
 
