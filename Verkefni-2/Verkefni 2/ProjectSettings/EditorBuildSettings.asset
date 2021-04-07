@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lokasena.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/232.unity
+    guid: 9e849cc8d9223a84c8ea6cce1c655b18
   m_configObjects: {}
